@@ -20,7 +20,6 @@
 
 <main>
 
-    <!-- PIPELINE OVERVIEW -->
     <section>
         <h2>Pipeline Overview</h2>
 
@@ -50,7 +49,6 @@
     </section>
 
 
-    <!-- ADD LEAD -->
     <section>
 
         <h2>Add Lead</h2>
@@ -92,23 +90,10 @@
                 <label for="status">Status</label>
 
                 <select id="status" name="status">
-
-                    <option value="New Lead">
-                        New Lead
-                    </option>
-
-                    <option value="Qualified">
-                        Qualified
-                    </option>
-
-                    <option value="Proposal">
-                        Proposal
-                    </option>
-
-                    <option value="Won">
-                        Won
-                    </option>
-
+                    <option value="New Lead">New Lead</option>
+                    <option value="Qualified">Qualified</option>
+                    <option value="Proposal">Proposal</option>
+                    <option value="Won">Won</option>
                 </select>
             </div>
 
@@ -116,35 +101,22 @@
                 <label for="priority">Priority</label>
 
                 <select id="priority" name="priority">
-
-                    <option value="Low">
-                        Low
-                    </option>
-
-                    <option value="Medium" selected>
-                        Medium
-                    </option>
-
-                    <option value="High">
-                        High
-                    </option>
-
+                    <option value="Low">Low</option>
+                    <option value="Medium" selected>Medium</option>
+                    <option value="High">High</option>
                 </select>
             </div>
 
-            <button type="submit">
-                Add Lead
-            </button>
+            <button type="submit">Add Lead</button>
 
         </form>
 
     </section>
 
 
-    <!-- LEADS -->
     <section>
 
-        <h2>Recent Leads</h2>
+        <h2>Lead Pipeline</h2>
 
         <table>
 
@@ -155,6 +127,7 @@
                     <th>Email</th>
                     <th>Status</th>
                     <th>Priority</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
 
@@ -170,6 +143,23 @@
                         <td>{{ lead["email"] }}</td>
                         <td>{{ lead["status"] }}</td>
                         <td>{{ lead["priority"] }}</td>
+
+                        <td>
+                            <a href="{{ url_for('edit_lead', lead_id=lead['id']) }}">
+                                Edit
+                            </a>
+
+                            <form
+                                action="{{ url_for('delete_lead', lead_id=lead['id']) }}"
+                                method="POST"
+                                style="display:inline;"
+                                onsubmit="return confirm('Delete this lead?');"
+                            >
+                                <button type="submit">
+                                    Delete
+                                </button>
+                            </form>
+                        </td>
                     </tr>
 
                     {% endfor %}
@@ -177,7 +167,7 @@
                 {% else %}
 
                     <tr>
-                        <td colspan="5">
+                        <td colspan="6">
                             No leads yet. Add your first lead above.
                         </td>
                     </tr>
