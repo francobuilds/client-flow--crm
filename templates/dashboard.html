@@ -13,74 +13,185 @@
 
 <body>
 
-    <header>
-        <h1>ClientFlow CRM</h1>
-        <p>Manage leads, clients, and pipeline activity.</p>
-    </header>
+<header>
+    <h1>ClientFlow CRM</h1>
+    <p>Manage leads, clients, and pipeline activity.</p>
+</header>
 
-    <main>
+<main>
 
-        <!-- PIPELINE OVERVIEW -->
-        <section>
-            <h2>Pipeline Overview</h2>
+    <!-- PIPELINE OVERVIEW -->
+    <section>
+        <h2>Pipeline Overview</h2>
 
-            <div class="pipeline">
+        <div class="pipeline">
 
-                <div class="card">
-                    <h3>New Leads</h3>
-                    <p>0</p>
-                </div>
-
-                <div class="card">
-                    <h3>Qualified</h3>
-                    <p>0</p>
-                </div>
-
-                <div class="card">
-                    <h3>Proposal</h3>
-                    <p>0</p>
-                </div>
-
-                <div class="card">
-                    <h3>Won</h3>
-                    <p>0</p>
-                </div>
-
+            <div class="card">
+                <h3>New Leads</h3>
+                <p>{{ new_count }}</p>
             </div>
-        </section>
+
+            <div class="card">
+                <h3>Qualified</h3>
+                <p>{{ qualified_count }}</p>
+            </div>
+
+            <div class="card">
+                <h3>Proposal</h3>
+                <p>{{ proposal_count }}</p>
+            </div>
+
+            <div class="card">
+                <h3>Won</h3>
+                <p>{{ won_count }}</p>
+            </div>
+
+        </div>
+    </section>
 
 
-        <!-- RECENT LEADS -->
-        <section>
+    <!-- ADD LEAD -->
+    <section>
 
-            <h2>Recent Leads</h2>
+        <h2>Add Lead</h2>
 
-            <table>
+        <form action="{{ url_for('add_lead') }}" method="POST">
 
-                <thead>
+            <div>
+                <label for="name">Client Name</label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Sarah Johnson"
+                    required
+                >
+            </div>
+
+            <div>
+                <label for="company">Company</label>
+                <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    placeholder="Apex Media"
+                >
+            </div>
+
+            <div>
+                <label for="email">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="sarah@example.com"
+                >
+            </div>
+
+            <div>
+                <label for="status">Status</label>
+
+                <select id="status" name="status">
+
+                    <option value="New Lead">
+                        New Lead
+                    </option>
+
+                    <option value="Qualified">
+                        Qualified
+                    </option>
+
+                    <option value="Proposal">
+                        Proposal
+                    </option>
+
+                    <option value="Won">
+                        Won
+                    </option>
+
+                </select>
+            </div>
+
+            <div>
+                <label for="priority">Priority</label>
+
+                <select id="priority" name="priority">
+
+                    <option value="Low">
+                        Low
+                    </option>
+
+                    <option value="Medium" selected>
+                        Medium
+                    </option>
+
+                    <option value="High">
+                        High
+                    </option>
+
+                </select>
+            </div>
+
+            <button type="submit">
+                Add Lead
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- LEADS -->
+    <section>
+
+        <h2>Recent Leads</h2>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Client</th>
+                    <th>Company</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Priority</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% if leads %}
+
+                    {% for lead in leads %}
+
                     <tr>
-                        <th>Client</th>
-                        <th>Company</th>
-                        <th>Status</th>
-                        <th>Priority</th>
+                        <td>{{ lead["name"] }}</td>
+                        <td>{{ lead["company"] }}</td>
+                        <td>{{ lead["email"] }}</td>
+                        <td>{{ lead["status"] }}</td>
+                        <td>{{ lead["priority"] }}</td>
                     </tr>
-                </thead>
 
-                <tbody>
+                    {% endfor %}
+
+                {% else %}
 
                     <tr>
-                        <td colspan="4">
-                            No leads yet.
+                        <td colspan="5">
+                            No leads yet. Add your first lead above.
                         </td>
                     </tr>
 
-                </tbody>
+                {% endif %}
 
-            </table>
+            </tbody>
 
-        </section>
+        </table>
 
-    </main>
+    </section>
+
+</main>
 
 </body>
+
 </html>
