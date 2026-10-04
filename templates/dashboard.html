@@ -1,46 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>ClientFlow CRM</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
+
     <header>
         <h1>ClientFlow CRM</h1>
         <p>Manage leads, clients, and pipeline activity.</p>
     </header>
 
     <main>
+
+        <!-- PIPELINE OVERVIEW -->
         <section>
             <h2>Pipeline Overview</h2>
 
-            <div>
-                <h3>New Leads</h3>
-                <p>0</p>
-            </div>
+            <div class="pipeline">
 
-            <div>
-                <h3>Qualified</h3>
-                <p>0</p>
-            </div>
+                <div class="card">
+                    <h3>New Leads</h3>
+                    <p>0</p>
+                </div>
 
-            <div>
-                <h3>Proposal</h3>
-                <p>0</p>
-            </div>
+                <div class="card">
+                    <h3>Qualified</h3>
+                    <p>0</p>
+                </div>
 
-            <div>
-                <h3>Won</h3>
-                <p>0</p>
+                <div class="card">
+                    <h3>Proposal</h3>
+                    <p>0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Won</h3>
+                    <p>0</p>
+                </div>
+
             </div>
         </section>
 
+
+        <!-- RECENT LEADS -->
         <section>
+
             <h2>Recent Leads</h2>
 
             <table>
+
                 <thead>
                     <tr>
                         <th>Client</th>
@@ -51,12 +67,20 @@
                 </thead>
 
                 <tbody>
+
                     <tr>
-                        <td colspan="4">No leads yet.</td>
+                        <td colspan="4">
+                            No leads yet.
+                        </td>
                     </tr>
+
                 </tbody>
+
             </table>
+
         </section>
+
     </main>
+
 </body>
 </html>
