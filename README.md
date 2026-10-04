@@ -1,5 +1,9 @@
 # ClientFlow CRM
 
+## Live Demo
+
+https://clientflow-crm-socf.onrender.com
+
 A lightweight sales pipeline and client relationship management application built with Flask and SQLite.
 
 ClientFlow provides a clean workspace for managing leads from initial contact through qualification, proposal, and closed business.
@@ -117,9 +121,7 @@ Major application changes are verified against the automated test suite before b
 
 ## Status
 
-ClientFlow V1 core functionality is complete.
-
-Next milestone: public deployment.
+ClientFlow V1 is complete, publicly deployed, and production-tested.
 
 ## Author
 
