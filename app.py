@@ -294,6 +294,9 @@ def delete_lead(lead_id):
     return redirect(url_for("dashboard"))
 
 
+# Initialize the database when the application starts.
+# This supports both local execution and production WSGI servers such as Gunicorn.
+init_db()
+
 if __name__ == "__main__":
-    init_db()
     app.run(debug=True)
